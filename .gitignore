@@ -1,0 +1,28 @@
+# Build
+build/
+out/
+cmake-build-*/
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+
+# Compiled shaders (build/ 配下に出るのが原則。ソース内に生成した場合用)
+*.spv
+
+# IDE / Editor
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs / misc
+*.log
