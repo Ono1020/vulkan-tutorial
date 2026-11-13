@@ -21,7 +21,8 @@
 ```bash
 vkcube            # 回転する立方体が出ればドライバ + SDK は OK
 vulkaninfo --summary
-slangc --version  # シェーダーは Slang が本流。glslc ではない
+which slangc      # シェーダーは Slang が本流。glslc ではない
+                  # (slangc に --version オプションは無いので which で確認する)
 ```
 
 ## 2. FindVulkan.cmake の配置
@@ -30,10 +31,10 @@ slangc --version  # シェーダーは Slang が本流。glslc ではない
 不具合があるとして、VulkanSamples 由来の `FindVulkan.cmake` をプロジェクト側に
 置く方式を推奨している。
 
-- チュートリアルの attachments にある `CMake/FindVulkan.cmake` をダウンロードし、
-  このリポジトリの `CMake/` フォルダに置く (詳細: `CMake/README.md`)
+- チュートリアルの attachments にある `CMake/FindVulkan.cmake` を、
+  このリポジトリの `CMake/` フォルダに配置済み (2026-11-13、詳細: `CMake/README.md`)
 - ルート `CMakeLists.txt` は `CMake/` を `CMAKE_MODULE_PATH` に追加済みなので、
-  置けば自動的にそちらが使われる。置くまでは CMake 同梱版で代替される
+  配置したものが自動的に使われる
 
 ## 3. その他の依存 (GLFW / GLM / tinyobjloader / tinygltf / KTX / stb)
 
@@ -89,7 +90,7 @@ tinygltf と KTX は 35章 (glTF/KTX) から、stb は 24章 (texture image) か
 ## 動作確認の順番
 
 1. `vkcube` が動くか (ドライバ + SDK)
-2. `slangc --version` が出るか (シェーダーコンパイラ)
-3. 空のリポジトリで `cmake --preset debug` が通るか (依存の検出)
-4. `00_base_code` (ウィンドウを開くだけ) が動くか (GLFW + Vulkan-Hpp)
+2. `which slangc` が SDK の `bin` を指すか (シェーダーコンパイラ)
+3. `cmake --preset debug` と `cmake --build --preset debug` が通るか (依存の検出)
+4. Base code を書いた状態で `VulkanTutorial` が起動するか (GLFW + Vulkan-Hpp)
 5. Validation Layers 有効で警告・エラーが出ていないか

@@ -13,6 +13,6 @@
 | `models/plant_on_table.obj` ほか | Ray tracing 章のモデル一式 | 38 |
 | `textures/plant_on_table_textures/*.png` | 上記のテクスチャ一式 | 38 |
 
-ビルド時に各章の実行ファイルの隣へ `models/` `textures/` としてコピーされる
-(`CMake/AddChapter.cmake` の `add_chapter()` が処理する)。
+ビルド時に実行ファイル (`VulkanTutorial`) の隣へ `models/` `textures/` として
+コピーされる (ルート `CMakeLists.txt` の POST_BUILD 処理)。
 そのため本文コードの相対パス (`models/viking_room.obj` など) は変更しなくてよい。
