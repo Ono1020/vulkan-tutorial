@@ -43,6 +43,14 @@ git log --oneline          # 章ごとのコミットを確認
 git show <commit>:src/main.cpp
 ```
 
+## 目標ライン
+
+- **必達は 31_compute_shader まで**。bh-renderer の前提として必要な部品はここで揃い、
+  この目標 (Vulkan Tutorial の完了) の完了ラインもここ
+- 32以降は任意 (興味枠)。34_android は対象外として読み飛ばす
+- コミットは全章通しの番号で続ける (`NN: <章タイトル>`)。
+  大部 (Drawing a triangle など) ごとの接頭辞は付けない
+
 ## 全章一覧 (attachments の番号)
 
 抜けている番号 (11, 13, 18) は、独立したコードファイルが無い章。
