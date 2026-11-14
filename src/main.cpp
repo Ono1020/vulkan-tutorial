@@ -1,9 +1,64 @@
-// Vulkan Tutorial のコードは、すべてこのファイルに書いていく。
-// 進め方: 本文の章ごとにこのファイルを育て、節目ごとにコミットして途中状態を残す。
-// 具体的な手順は docs/progression.md を参照。
-// 最初の章は 00_base_code (GLFW でウィンドウを開くところまで)。
+#include <vulkan/vulkan_raii.hpp>
 
-int main()
-{
-    return 0;
+#if defined(__INTELLISENSE__) || !defined(USE_CPP20_MODULES)
+#include <vulkan/vulkan_raii.hpp>
+#else
+import vulkan_hpp;
+#endif
+#include <GLFW/glfw3.h>
+
+#include <cstdlib>
+#include <iostream>
+#include <stdexcept>
+
+// #define GLFW_INCLUDE_VULKAN
+// #include <GLFW/glfw3.h>
+
+constexpr uint32_t WIDTH = 800;
+constexpr uint32_t HEIGHT = 600;
+
+class HelloTriangleApplication {
+public:
+  void run() {
+    initWindow();
+    initVulkan();
+    mainLoop();
+    cleanup();
+  }
+
+private:
+  void initWindow() {
+    glfwInit();
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+    window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+  }
+
+  void initVulkan() {}
+
+  void mainLoop() {
+    while (!glfwWindowShouldClose(window)) {
+      glfwPollEvents();
+    }
+  }
+
+  void cleanup() {
+    glfwDestroyWindow(window);
+    glfwTerminate();
+  }
+
+private:
+  GLFWwindow *window = nullptr;
+};
+
+int main() {
+  try {
+    HelloTriangleApplication app;
+    app.run();
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
 }
